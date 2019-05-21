@@ -2,18 +2,17 @@ pipeline {
     
     // Disable ConcurrentBuilds
     options { disableConcurrentBuilds() }
-    
-    environment {
-        TAG_NAME = "${env.BRANCH_NAME}"
-    }
 
-    agent { label "node-team1" } // Change to your own team's node
+    agent { label "node-platform" } // Change to your own team's node
+    
+    triggers {
+        cron(env.BRANCH_NAME == 'try-schedule-workflow' ? '1 2 */1 * *' : '')
+    }
     
     stages {
-        stage("BUILD IMAGE") {
+        stage('Debug ON') {
             steps {
-                sh 'python --version'
-                sh 'docker build -t test .'
+                sh 'sleep 30'
             }
         }
     }
