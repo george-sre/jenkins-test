@@ -1,20 +1,33 @@
 pipeline {
     
-    // Disable ConcurrentBuilds
-    options { disableConcurrentBuilds() }
-    
-    environment {
-        TAG_NAME = "${env.BRANCH_NAME}"
-    }
-
     agent { label "node-team1" } // Change to your own team's node
     
     stages {
-        stage("BUILD IMAGE") {
+    
+        stage("STAGE build") {
             steps {
-                sh 'python --version'
-                sh 'docker build -t test .'
+                echo 'STAGE build'
             }
         }
+        
+        stage("test1") {
+            steps {
+                echo 'test1'
+            }
+        }
+
+        stage('test2') {
+            steps {
+                echo 'test2'
+            }
+        }
+
+
+		stage('deploy') {
+            steps {
+                echo 'deploy'
+            }
+        }
+
     }
 }

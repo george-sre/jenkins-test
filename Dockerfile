@@ -1,13 +1,9 @@
-FROM ubuntu:12.04
+FROM ubuntu:latest
 
-MAINTAINER george-sre
+RUN apt-get update
+RUN apt-get install -y curl
+RUN apt-get install -y docker
+RUN apt-get install -y gcc
+RUN apt-get install -y build-essential
 
-RUN apt-get update && apt-get install -y apache2 && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-ENV APACHE_RUN_USER www-data
-ENV APACHE_RUN_GROUP www-data
-ENV APACHE_LOG_DIR /var/log/apache2
-
-EXPOSE 80
-
-CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
+RUN echo hello
