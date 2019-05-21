@@ -1,33 +1,49 @@
 pipeline {
-    
+
     agent { label "node-team1" } // Change to your own team's node
     
     stages {
     
-        stage("STAGE build") {
+        stage("THE FIRST STAGE") {
             steps {
-                echo 'STAGE build'
+                echo 'THE FIRST STAGE'
             }
         }
         
-        stage("test1") {
-            steps {
-                echo 'test1'
+        stage("PARALLEL TESTS") {
+            
+            parallel {
+                
+                stage("PARALLEL TEST 1") {
+                    steps {
+                        echo 'PARALLEL TEST 1'
+                    }
+                }
+
+                stage("PARALLEL TEST 2") {
+                    steps {
+                        echo 'PARALLEL TEST 2'
+                    }
+                }
+
+                stage("PARALLEL TEST 3") {
+                    steps {
+                        echo 'PARALLEL TEST 3'
+                    }
+                }
+
+                stage("PARALLEL TEST 4") {
+                    steps {
+                        echo 'PARALLEL TEST 4'
+                    }
+                }
             }
         }
 
-        stage('test2') {
+        stage("THE FINAL STAGE") {
             steps {
-                echo 'test2'
+                echo 'THE FINAL STAGE'
             }
         }
-
-
-		stage('deploy') {
-            steps {
-                echo 'deploy'
-            }
-        }
-
     }
 }
