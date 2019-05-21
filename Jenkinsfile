@@ -3,7 +3,7 @@ pipeline {
     // Disable ConcurrentBuilds
     options { disableConcurrentBuilds() }
 
-    agent { label "node-platform" } // Change to your own team's node
+    agent { label "node-team1" } // Change to your own team's node
     
     triggers {
         cron(env.BRANCH_NAME == 'try-schedule-workflow' ? '1 2 */1 * *' : '')
